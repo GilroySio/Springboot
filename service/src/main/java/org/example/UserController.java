@@ -1,11 +1,18 @@
 package org.example;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
-public class HelloController {
+public class UserController {
+
+	UserService userService;
+
+	@Autowired
+	public UserController(UserService userService) {
+		this.userService = new UserService();
+	}
 
 	@GetMapping("/")
 	public String index() {
@@ -18,7 +25,7 @@ public class HelloController {
 	}
 
 	@GetMapping("/users")
-	public String users() {
-		return "";
+	public User users() {
+		return userService.getUsers().get(0);
 	}
 }
