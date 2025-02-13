@@ -7,23 +7,20 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>service</artifactId>
+    <artifactId>repo</artifactId>
     <packaging>jar</packaging>
 
-    <name>service</name>
+    <name>repo</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>model</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>repo</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -18,7 +18,8 @@
 		<module>app</module>
 		<module>service</module>
 		<module>model</module>
-	</modules>
+        <module>repo</module>
+    </modules>
 
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>
@@ -35,6 +36,11 @@
 			<dependency>
 				<groupId>org.example</groupId>
 				<artifactId>model</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.example</groupId>
+				<artifactId>repo</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>

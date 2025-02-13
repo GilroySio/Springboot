@@ -2,13 +2,15 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="app" />
-        <module name="service" />
         <module name="model" />
+        <module name="service" />
+        <module name="repo" />
       </profile>
     </annotationProcessing>
   </component>
@@ -16,6 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="app" options="-parameters" />
       <module name="model" options="-parameters" />
+      <module name="repo" options="-parameters" />
       <module name="service" options="-parameters" />
       <module name="spring-boot-complete" options="" />
     </option>
