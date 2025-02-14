@@ -1,8 +1,7 @@
 package org.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,7 +16,27 @@ public class RoleController {
     }
 
     @GetMapping("/roles")
-    public List<Role> getRoles() {
+    public List<RoleDTO> getRoles() {
         return roleService.getRoles();
+    }
+
+    @GetMapping("/roles/{id}")
+    public RoleDTO employeeById(@PathVariable("id") int id) {
+        return roleService.getRoleById(id);
+    }
+
+    @PutMapping("/roles/{id}")
+    public void updateEmployee(@PathVariable("id") int id, @RequestBody Role role) {
+        roleService.updateRole(id, role);
+    }
+
+    @PostMapping("/add-role")
+    public void addEmployee(@RequestBody Role role) {
+        roleService.addRole(role);
+    }
+
+    @DeleteMapping("/delete-role/{id}")
+    public void deleteEmployee(@PathVariable("id") int id) {
+        roleService.deleteRole(id);
     }
 }

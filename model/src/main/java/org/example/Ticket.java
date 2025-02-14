@@ -1,25 +1,30 @@
 package org.example;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+//@Entity
+//@Table
 public class Ticket {
-    private int tickerNumber;
+    //@Id
+    //@SequenceGenerator(name = "ticketSequence", sequenceName = "ticketSequence", allocationSize = 1)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ticketSequence")
+    private int id;
     private String title;
     private String body;
-    private String assignee;
+    //@ManyToMany(mappedBy = "tickets")
+    private List<Employee> assignees;
     private String status;
     private String createdDate;
-    private String createdBy;
+    private Employee createdBy;
     private String updatedDate;
-    private String updatedBy;
+    private Employee updatedBy;
     private String remarks;
-
-    public Ticket(int tickerNumber, String title, String body) {
-        this.tickerNumber = tickerNumber;
-        this.title = title;
-        this.body = body;
-    }
 }

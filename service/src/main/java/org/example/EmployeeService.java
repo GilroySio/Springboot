@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,17 +18,23 @@ public class EmployeeService {
         this.roleRepo = roleRepo;
     }
 
-    public List<Employee> getEmployees() {
-        return employeeRepo.findAll();
+    public List<EmployeeDTO> getEmployees() {
+        List<Employee> employeeList = employeeRepo.findAll();
+        List<EmployeeDTO> employeeDTOList = new ArrayList<EmployeeDTO>();
+        for(Employee e: employeeList) {
+            employeeDTOList.add(new EmployeeDTO(e));
+        }
+        return employeeDTOList;
     }
 
-    public Employee getEmployeeById(int id) {
-        return employeeRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("employee with id" + id + "does not exist"));
+    public EmployeeDTO getEmployeeById(int id) {
+        Employee employee = employeeRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("employee with id " + id + " does not exist"));
+        return new EmployeeDTO(employee);
     }
 
     @Transactional
     public void updateEmployee(int id, Employee tempEmployee) {
-        Employee e = employeeRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("employee with id" + id + "does not exist"));
+        Employee e = employeeRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("employee with id " + id + " does not exist"));
         if(tempEmployee == null) {
             throw new IllegalArgumentException("null input");
         }
@@ -55,15 +62,33 @@ public class EmployeeService {
 
     public void deleteEmployee(int id) {
         if(!employeeRepo.existsById(id)) {
-            throw new IllegalArgumentException("employee with id" + id + "does not exist");
+            throw new IllegalArgumentException("employee with id " + id + " does not exist");
         }
         employeeRepo.deleteById(id);
     }
 
     @Transactional
-    public void setRole(int employeeId, int roleId) {
-        Employee e = employeeRepo.findById(employeeId).orElseThrow(() -> new IllegalArgumentException("employee with id" + employeeId + "does not exist"));
-        Role r = roleRepo.findById(roleId).orElseThrow(() -> new IllegalArgumentException("employee with id" + roleId + "does not exist"));
-        e.setRole(r);
+    public void addRole(int employeeId, int roleId) {
+        Employee e = employeeRepo.findById(employeeId).orElseThrow(() -> new IllegalArgumentException("employee with id " + employeeId + " does not exist"));
+        Role r = roleRepo.findById(roleId).orElseThrow(() -> new IllegalArgumentException("role with id " + roleId + " does not exist"));
+        for(Role role: e.getRoles()) {
+            if(role.getId() == roleId) {
+                throw new IllegalArgumentException("employee with id " + employeeId + " already has that role");
+            }
+        }
+        e.getRoles().add(r);
+    }
+
+    @Transactional
+    public void deleteRole(int employeeId, int roleId) {
+        Employee e = employeeRepo.findById(employeeId).orElseThrow(() -> new IllegalArgumentException("employee with id " + employeeId + " does not exist"));
+        Role r = roleRepo.findById(roleId).orElseThrow(() -> new IllegalArgumentException("role with id " + roleId + " does not exist"));
+        for(int i = 0; i < e.getRoles().size(); i++) {
+            if(e.getRoles().get(i).getId() == roleId) {
+                e.getRoles().remove(i);
+                return;
+            }
+        }
+        throw new IllegalArgumentException("employee with id " + employeeId + " does not have that role");
     }
 }

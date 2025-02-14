@@ -1,17 +1,16 @@
 package org.example;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
 @Table
 public class Role {
@@ -21,6 +20,9 @@ public class Role {
     private int id;
     private String title;
     private String description;
+
+    @ManyToMany(mappedBy = "roles")
+    private List<Employee> employees = new ArrayList<Employee>();
 
     public Role(String title, String description) {
         this.title = title;

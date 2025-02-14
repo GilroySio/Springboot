@@ -21,17 +21,16 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/employees")
-	public List<Employee> employees() {
+	public List<EmployeeDTO> employees() {
 		return employeeService.getEmployees();
 	}
 
 	@GetMapping("/employees/{id}")
-	public Employee employeeById(@PathVariable("id") int id) {
+	public EmployeeDTO employeeById(@PathVariable("id") int id) {
 		return employeeService.getEmployeeById(id);
 	}
 
 	@PutMapping("/employees/{id}")
-	//public void updateEmployee(@PathVariable("id") int id, @RequestParam(required = false) String name, @RequestParam(required = false) int age, @RequestParam(required = false) String address, @RequestParam(required = false) String contactNo, @RequestParam(required = false) String employmentStatus) {
 	public void updateEmployee(@PathVariable("id") int id, @RequestBody Employee employee) {
 		employeeService.updateEmployee(id, employee);
 		//employeeService.updateEmployee(id, name, age, address, contactNo, employmentStatus);
@@ -47,8 +46,13 @@ public class EmployeeController {
 		employeeService.deleteEmployee(id);
 	}
 
-	@PutMapping("/set-role/{employeeId}/{roleId}")
+	@PutMapping("/add-role/{employeeId}/role/{roleId}")
 	public void setRole(@PathVariable("employeeId") int employeeId, @PathVariable("roleId") int roleId) {
-		employeeService.setRole(employeeId, roleId);
+		employeeService.addRole(employeeId, roleId);
+	}
+
+	@PutMapping("/delete-role/{employeeId}/role/{roleId}")
+	public void deleteRole(@PathVariable("employeeId") int employeeId, @PathVariable("roleId") int roleId) {
+		employeeService.deleteRole(employeeId, roleId);
 	}
 }
