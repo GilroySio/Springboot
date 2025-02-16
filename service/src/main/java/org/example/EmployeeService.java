@@ -11,20 +11,17 @@ import java.util.List;
 public class EmployeeService {
     private final EmployeeRepo employeeRepo;
     private final RoleRepo roleRepo;
+    private final TicketRepo ticketRepo;
 
     @Autowired
-    public EmployeeService(EmployeeRepo employeeRepo, RoleRepo roleRepo) {
+    public EmployeeService(EmployeeRepo employeeRepo, RoleRepo roleRepo, TicketRepo ticketRepo) {
         this.employeeRepo = employeeRepo;
         this.roleRepo = roleRepo;
+        this.ticketRepo = ticketRepo;
     }
 
     public List<EmployeeDTO> getEmployees() {
-        List<Employee> employeeList = employeeRepo.findAll();
-        List<EmployeeDTO> employeeDTOList = new ArrayList<EmployeeDTO>();
-        for(Employee e: employeeList) {
-            employeeDTOList.add(new EmployeeDTO(e));
-        }
-        return employeeDTOList;
+        return employeeRepo.findAll().stream().map(EmployeeDTO::new).toList();
     }
 
     public EmployeeDTO getEmployeeById(int id) {
@@ -53,10 +50,22 @@ public class EmployeeService {
         if(tempEmployee.getEmploymentStatus() != null && !tempEmployee.getEmploymentStatus().isEmpty()) {
             e.setEmploymentStatus(tempEmployee.getEmploymentStatus());
         }
-        System.out.println(tempEmployee);
     }
 
+    @Transactional
     public void addEmployee(Employee employee) {
+        if(employee.getName() == null || employee.getName().isEmpty()) {
+            throw new IllegalArgumentException("cannot add employee without name");
+        }
+        if(employee.getAge() == null || employee.getAge() == 0) {
+            throw new IllegalArgumentException("cannot add employee without age");
+        }
+        if(employee.getAddress() == null || employee.getAddress().isEmpty()) {
+            throw new IllegalArgumentException("cannot add employee without address");
+        }
+        if(employee.getContactNo() == null || employee.getContactNo().isEmpty()) {
+            throw new IllegalArgumentException("cannot add employee without contact no");
+        }
         employeeRepo.save(employee);
     }
 
@@ -90,5 +99,29 @@ public class EmployeeService {
             }
         }
         throw new IllegalArgumentException("employee with id " + employeeId + " does not have that role");
+    }
+    @Transactional
+    public void addTicket(int employeeId, int ticketId) {
+        Employee e = employeeRepo.findById(employeeId).orElseThrow(() -> new IllegalArgumentException("employee with id " + employeeId + " does not exist"));
+        Ticket t = ticketRepo.findById(ticketId).orElseThrow(() -> new IllegalArgumentException("ticket with id " + ticketId + " does not exist"));
+        for(Ticket ticket: e.getTickets()) {
+            if(ticket.getId() == ticketId) {
+                throw new IllegalArgumentException("employee with id " + employeeId + " already has that ticket assigned");
+            }
+        }
+        t.getAssignees().add(e);
+    }
+
+    @Transactional
+    public void deleteTicket(int employeeId, int ticketId) {
+        Employee e = employeeRepo.findById(employeeId).orElseThrow(() -> new IllegalArgumentException("employee with id " + employeeId + " does not exist"));
+        Ticket t = ticketRepo.findById(ticketId).orElseThrow(() -> new IllegalArgumentException("ticket with id " + ticketId + " does not exist"));
+        for(int i = 0; i < e.getRoles().size(); i++) {
+            if(t.getAssignees().get(i).getId() == employeeId) {
+                t.getAssignees().remove(i);
+                return;
+            }
+        }
+        throw new IllegalArgumentException("employee with id " + employeeId + " does not have that ticket");
     }
 }

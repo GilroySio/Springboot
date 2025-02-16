@@ -3,6 +3,7 @@ package org.example;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -10,21 +11,34 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-//@Entity
-//@Table
+@Entity
+@Table
 public class Ticket {
-    //@Id
-    //@SequenceGenerator(name = "ticketSequence", sequenceName = "ticketSequence", allocationSize = 1)
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ticketSequence")
+    @Id
+    @SequenceGenerator(name = "ticketSequence", sequenceName = "ticketSequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ticketSequence")
     private int id;
     private String title;
     private String body;
-    //@ManyToMany(mappedBy = "tickets")
+    @ManyToMany
+    @JoinTable(name = "ticket_employee", joinColumns = @JoinColumn(name = "ticket_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private List<Employee> assignees;
     private String status;
-    private String createdDate;
+    private LocalDate createdDate;
+    @ManyToOne
+    @JoinTable(
+            name = "ticket_create_employee",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "ticket_id")
+    )
     private Employee createdBy;
-    private String updatedDate;
+    private LocalDate updatedDate;
+    @ManyToOne
+    @JoinTable(
+            name = "ticket_update_employee",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "ticket_id")
+    )
     private Employee updatedBy;
     private String remarks;
 }

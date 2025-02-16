@@ -55,4 +55,14 @@ public class EmployeeController {
 	public void deleteRole(@PathVariable("employeeId") int employeeId, @PathVariable("roleId") int roleId) {
 		employeeService.deleteRole(employeeId, roleId);
 	}
+
+	@PutMapping("/add-ticket/{employeeId}/ticket/{ticketId}")
+	public void setTicket(@PathVariable("employeeId") int employeeId, @PathVariable("ticketId") int ticketId) {
+		employeeService.addTicket(employeeId, ticketId);
+	}
+
+	@PutMapping("/delete-ticket/{employeeId}/ticket/{ticketId}")
+	public void deleteTicket(@PathVariable("employeeId") int employeeId, @PathVariable("ticketId") int ticketId) {
+		employeeService.deleteTicket(employeeId, ticketId);
+	}
 }

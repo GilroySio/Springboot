@@ -19,7 +19,8 @@ public class EmployeeDTO {
     private String address;
     private String contactNo;
     private String employmentStatus;
-    private List<RoleDTO> roles = new ArrayList<RoleDTO>();
+    private List<RoleDTO> roles;
+    private List<TicketDTO> tickets;
 
     public EmployeeDTO(Employee e) {
         this.id = e.getId();
@@ -28,8 +29,7 @@ public class EmployeeDTO {
         this.address = e.getAddress();
         this.contactNo = e.getContactNo();
         this.employmentStatus = e.getEmploymentStatus();
-        for(Role role: e.getRoles()) {
-            this.roles.add(new RoleDTO(role));
-        }
+        this.roles = e.getRoles().stream().map(RoleDTO::new).toList();
+        this.tickets = e.getTickets().stream().map(TicketDTO::new).toList();
     }
 }

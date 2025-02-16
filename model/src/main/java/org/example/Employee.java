@@ -26,10 +26,8 @@ public class Employee {
     @ManyToMany
     @JoinTable(name = "employee_role", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<Role>();
-
-    //@ManyToMany
-    //@JoinTable(name = "employee_ticket", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "ticket_id"))
-    //private List<Ticket> tickets = new ArrayList<Ticket>();
+    @ManyToMany(mappedBy = "assignees")
+    private List<Ticket> tickets = new ArrayList<Ticket>();
 
     public Employee(String name, int age, String address, String contactNo, String employmentStatus) {
         this.name = name;

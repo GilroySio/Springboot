@@ -17,12 +17,7 @@ public class RoleService {
     }
 
     public List<RoleDTO> getRoles() {
-        List<Role> roleList = roleRepo.findAll();
-        List<RoleDTO> roleDTOList = new ArrayList<RoleDTO>();
-        for(Role r: roleList) {
-            roleDTOList.add((new RoleDTO(r)));
-        }
-        return roleDTOList;
+        return roleRepo.findAll().stream().map(RoleDTO::new).toList();
     }
 
     public RoleDTO getRoleById(int id) {
@@ -45,7 +40,14 @@ public class RoleService {
         System.out.println(tempRole);
     }
 
+    @Transactional
     public void addRole(Role role) {
+        if(role.getTitle() == null || role.getTitle().isEmpty()) {
+            throw new IllegalArgumentException("cannot add role without title");
+        }
+        if(role.getDescription() == null || role.getDescription().isEmpty()) {
+            throw new IllegalArgumentException("cannot add role without description");
+        }
         roleRepo.save(role);
     }
 

@@ -5,22 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="978e28e3-0229-465d-871a-a6d7b26b79a7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/org/example/EmployeeDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/org/example/RoleDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/org/example/TicketDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repo/src/main/java/org/example/TicketRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/org/example/TicketController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/org/example/TicketService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/org/example/AppTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/model/src/main/java/org/example/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/org/example/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/org/example/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/org/example/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/org/example/EmployeeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/org/example/EmployeeDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/org/example/RoleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/org/example/RoleDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/src/main/java/org/example/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/org/example/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/test/java/org/example/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/repo/src/test/java/org/example/AppTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/main/java/org/example/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/org/example/EmployeeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/main/java/org/example/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/org/example/EmployeeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/main/java/org/example/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/org/example/RoleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/main/java/org/example/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/org/example/RoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/org/example/AppTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +33,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -46,20 +49,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Application.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/glsio/Desktop/Springboot",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/glsio/Desktop/Springboot&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="spring-boot" />

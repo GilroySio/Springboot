@@ -7,7 +7,6 @@ import java.util.List;
 
 @RestController
 public class RoleController {
-
     RoleService roleService;
 
     @Autowired
@@ -21,22 +20,22 @@ public class RoleController {
     }
 
     @GetMapping("/roles/{id}")
-    public RoleDTO employeeById(@PathVariable("id") int id) {
+    public RoleDTO getRoleById(@PathVariable("id") int id) {
         return roleService.getRoleById(id);
     }
 
     @PutMapping("/roles/{id}")
-    public void updateEmployee(@PathVariable("id") int id, @RequestBody Role role) {
+    public void updateRole(@PathVariable("id") int id, @RequestBody Role role) {
         roleService.updateRole(id, role);
     }
 
     @PostMapping("/add-role")
-    public void addEmployee(@RequestBody Role role) {
+    public void addRole(@RequestBody Role role) {
         roleService.addRole(role);
     }
 
     @DeleteMapping("/delete-role/{id}")
-    public void deleteEmployee(@PathVariable("id") int id) {
+    public void deleteRole(@PathVariable("id") int id) {
         roleService.deleteRole(id);
     }
 }
