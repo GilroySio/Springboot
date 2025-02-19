@@ -8,12 +8,8 @@ import java.util.List;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-    private final RoleRepo roleRepo;
-
     @Autowired
-    public RoleServiceImpl(RoleRepo roleRepo) {
-        this.roleRepo = roleRepo;
-    }
+    RoleRepo roleRepo;
 
     public List<RoleDTO> getRoles() {
         return roleRepo.findAll().stream().map(RoleDTO::new).toList();

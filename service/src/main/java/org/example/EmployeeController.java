@@ -8,12 +8,8 @@ import java.util.List;
 @RestController
 public class EmployeeController {
 
-	EmployeeServiceImpl employeeServiceImpl;
-
 	@Autowired
-	public EmployeeController(EmployeeServiceImpl employeeServiceImpl) {
-		this.employeeServiceImpl = employeeServiceImpl;
-	}
+	EmployeeServiceImpl employeeServiceImpl;
 
 	@GetMapping("/")
 	public String index() {

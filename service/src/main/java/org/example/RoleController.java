@@ -7,13 +7,9 @@ import java.util.List;
 
 @RestController
 public class RoleController {
-    RoleServiceImpl roleServiceImpl;
-
     @Autowired
-    public RoleController(RoleServiceImpl roleServiceImpl) {
-        this.roleServiceImpl = roleServiceImpl;
-    }
-
+    RoleServiceImpl roleServiceImpl;
+    
     @GetMapping("/roles")
     public List<RoleDTO> getRoles() {
         return roleServiceImpl.getRoles();

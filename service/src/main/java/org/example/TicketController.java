@@ -7,12 +7,8 @@ import java.util.List;
 
 @RestController
 public class TicketController {
-    TicketServiceImpl ticketServiceImpl;
-
     @Autowired
-    public TicketController(TicketServiceImpl ticketServiceImpl) {
-        this.ticketServiceImpl = ticketServiceImpl;
-    }
+    TicketServiceImpl ticketServiceImpl;
 
     @GetMapping("/tickets")
     public List<TicketDTO> getTickets() {

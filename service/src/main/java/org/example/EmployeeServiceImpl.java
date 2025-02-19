@@ -8,16 +8,12 @@ import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private final EmployeeRepo employeeRepo;
-    private final RoleRepo roleRepo;
-    private final TicketRepo ticketRepo;
-
     @Autowired
-    public EmployeeServiceImpl(EmployeeRepo employeeRepo, RoleRepo roleRepo, TicketRepo ticketRepo) {
-        this.employeeRepo = employeeRepo;
-        this.roleRepo = roleRepo;
-        this.ticketRepo = ticketRepo;
-    }
+    EmployeeRepo employeeRepo;
+    @Autowired
+    RoleRepo roleRepo;
+    @Autowired
+    TicketRepo ticketRepo;
 
     public List<EmployeeDTO> getEmployees() {
         return employeeRepo.findAll().stream().map(EmployeeDTO::new).toList();

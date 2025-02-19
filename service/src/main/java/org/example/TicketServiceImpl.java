@@ -9,14 +9,10 @@ import java.util.List;
 
 @Service
 public class TicketServiceImpl implements  TicketService {
-    private final TicketRepo ticketRepo;
-    private final EmployeeRepo employeeRepo;
-
     @Autowired
-    public TicketServiceImpl(TicketRepo ticketRepo, EmployeeRepo employeeRepo) {
-        this.ticketRepo = ticketRepo;
-        this.employeeRepo = employeeRepo;
-    }
+    TicketRepo ticketRepo;
+    @Autowired
+    EmployeeRepo employeeRepo;
 
     public List<TicketDTO> getTickets() {
         return ticketRepo.findAll().stream().map(TicketDTO::new).toList();
