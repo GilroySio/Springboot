@@ -7,35 +7,35 @@ import java.util.List;
 
 @RestController
 public class RoleController {
-    RoleService roleService;
+    RoleServiceImpl roleServiceImpl;
 
     @Autowired
-    public RoleController(RoleService roleService) {
-        this.roleService = roleService;
+    public RoleController(RoleServiceImpl roleServiceImpl) {
+        this.roleServiceImpl = roleServiceImpl;
     }
 
     @GetMapping("/roles")
     public List<RoleDTO> getRoles() {
-        return roleService.getRoles();
+        return roleServiceImpl.getRoles();
     }
 
     @GetMapping("/roles/{id}")
     public RoleDTO getRoleById(@PathVariable("id") int id) {
-        return roleService.getRoleById(id);
+        return roleServiceImpl.getRoleById(id);
     }
 
     @PutMapping("/roles/{id}")
     public void updateRole(@PathVariable("id") int id, @RequestBody Role role) {
-        roleService.updateRole(id, role);
+        roleServiceImpl.updateRole(id, role);
     }
 
     @PostMapping("/add-role")
     public void addRole(@RequestBody Role role) {
-        roleService.addRole(role);
+        roleServiceImpl.addRole(role);
     }
 
     @DeleteMapping("/delete-role/{id}")
     public void deleteRole(@PathVariable("id") int id) {
-        roleService.deleteRole(id);
+        roleServiceImpl.deleteRole(id);
     }
 }

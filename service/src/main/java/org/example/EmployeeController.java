@@ -8,11 +8,11 @@ import java.util.List;
 @RestController
 public class EmployeeController {
 
-	EmployeeService employeeService;
+	EmployeeServiceImpl employeeServiceImpl;
 
 	@Autowired
-	public EmployeeController(EmployeeService employeeService) {
-		this.employeeService = employeeService;
+	public EmployeeController(EmployeeServiceImpl employeeServiceImpl) {
+		this.employeeServiceImpl = employeeServiceImpl;
 	}
 
 	@GetMapping("/")
@@ -22,47 +22,47 @@ public class EmployeeController {
 
 	@GetMapping("/employees")
 	public List<EmployeeDTO> employees() {
-		return employeeService.getEmployees();
+		return employeeServiceImpl.getEmployees();
 	}
 
 	@GetMapping("/employees/{id}")
 	public EmployeeDTO employeeById(@PathVariable("id") int id) {
-		return employeeService.getEmployeeById(id);
+		return employeeServiceImpl.getEmployeeById(id);
 	}
 
 	@PutMapping("/employees/{id}")
 	public void updateEmployee(@PathVariable("id") int id, @RequestBody Employee employee) {
-		employeeService.updateEmployee(id, employee);
+		employeeServiceImpl.updateEmployee(id, employee);
 		//employeeService.updateEmployee(id, name, age, address, contactNo, employmentStatus);
 	}
 
 	@PostMapping("/add-employee")
 	public void addEmployee(@RequestBody Employee employee) {
-		employeeService.addEmployee(employee);
+		employeeServiceImpl.addEmployee(employee);
 	}
 
 	@DeleteMapping("/delete-employee/{id}")
 	public void deleteEmployee(@PathVariable("id") int id) {
-		employeeService.deleteEmployee(id);
+		employeeServiceImpl.deleteEmployee(id);
 	}
 
 	@PutMapping("/add-role/{employeeId}/role/{roleId}")
 	public void setRole(@PathVariable("employeeId") int employeeId, @PathVariable("roleId") int roleId) {
-		employeeService.addRole(employeeId, roleId);
+		employeeServiceImpl.addRole(employeeId, roleId);
 	}
 
 	@PutMapping("/delete-role/{employeeId}/role/{roleId}")
 	public void deleteRole(@PathVariable("employeeId") int employeeId, @PathVariable("roleId") int roleId) {
-		employeeService.deleteRole(employeeId, roleId);
+		employeeServiceImpl.deleteRole(employeeId, roleId);
 	}
 
 	@PutMapping("/add-ticket/{employeeId}/ticket/{ticketId}")
 	public void setTicket(@PathVariable("employeeId") int employeeId, @PathVariable("ticketId") int ticketId) {
-		employeeService.addTicket(employeeId, ticketId);
+		employeeServiceImpl.addTicket(employeeId, ticketId);
 	}
 
 	@PutMapping("/delete-ticket/{employeeId}/ticket/{ticketId}")
 	public void deleteTicket(@PathVariable("employeeId") int employeeId, @PathVariable("ticketId") int ticketId) {
-		employeeService.deleteTicket(employeeId, ticketId);
+		employeeServiceImpl.deleteTicket(employeeId, ticketId);
 	}
 }
