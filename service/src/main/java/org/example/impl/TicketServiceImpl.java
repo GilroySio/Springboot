@@ -1,6 +1,7 @@
-package org.example;
+package org.example.impl;
 
 import jakarta.transaction.Transactional;
+import org.example.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class TicketServiceImpl implements  TicketService {
+public class TicketServiceImpl implements TicketService {
     @Autowired
     TicketRepo ticketRepo;
     @Autowired
@@ -24,7 +25,7 @@ public class TicketServiceImpl implements  TicketService {
     }
 
     @Transactional
-    public void addTicket(Ticket ticket) {
+    public TicketDTO addTicket(Ticket ticket) {
         if(ticket.getTitle() == null || ticket.getTitle().isEmpty()) {
             throw new IllegalArgumentException("cannot add ticket without title");
         }
@@ -35,10 +36,11 @@ public class TicketServiceImpl implements  TicketService {
         ticket.setCreatedBy(employeeRepo.findById(2).orElseThrow(() -> new IllegalArgumentException("default employee with id 2 for ticket creation does not exist")));
         ticket.setCreatedDate(LocalDate.now());
         ticketRepo.save(ticket);
+        return new TicketDTO(ticket);
     }
 
     @Transactional
-    public void editTicket(int id, Ticket t) {
+    public TicketDTO editTicket(int id, Ticket t) {
         Ticket ticket = ticketRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ticket with id " + id + " does not exist"));
         if(t.getTitle() != null && !t.getTitle().isEmpty()) {
             ticket.setTitle(t.getTitle());
@@ -48,6 +50,7 @@ public class TicketServiceImpl implements  TicketService {
         }
         ticket.setUpdatedBy(employeeRepo.findById(2).orElseThrow(() -> new IllegalArgumentException("default employee with id 2 for ticket update does not exist")));
         ticket.setUpdatedDate(LocalDate.now());
+        return new TicketDTO(ticket);
     }
 
     public void deleteTicket(int id) {
@@ -58,16 +61,17 @@ public class TicketServiceImpl implements  TicketService {
     }
 
     @Transactional
-    public void resolveTicket(int id) {
+    public TicketDTO resolveTicket(int id, String s) {
         Ticket ticket = ticketRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ticket with id " + id + " does not exist"));
-        ticket.setStatus("resolved");
+        ticket.setStatus(s);
         ticket.setUpdatedBy(employeeRepo.findById(2).orElseThrow(() -> new IllegalArgumentException("default employee with id 2 for ticket update does not exist")));
         ticket.setUpdatedDate(LocalDate.now());
         ticket.getAssignees().clear();
+        return new TicketDTO(ticket);
     }
 
     @Transactional
-    public void addRemarks(int id, Ticket t) {
+    public TicketDTO addRemarks(int id, Ticket t) {
         Ticket ticket = ticketRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ticket with id " + id + " does not exist"));
         if(t.getRemarks() == null || t.getRemarks().isEmpty()) {
             throw new IllegalArgumentException("no remarks found");
@@ -75,5 +79,6 @@ public class TicketServiceImpl implements  TicketService {
         ticket.setRemarks(t.getRemarks());
         ticket.setUpdatedBy(employeeRepo.findById(2).orElseThrow(() -> new IllegalArgumentException("default employee with id 2 for ticket update does not exist")));
         ticket.setUpdatedDate(LocalDate.now());
+        return new TicketDTO(ticket);
     }
 }

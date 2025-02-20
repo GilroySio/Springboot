@@ -1,6 +1,10 @@
-package org.example;
+package org.example.impl;
 
 import jakarta.transaction.Transactional;
+import org.example.Role;
+import org.example.RoleDTO;
+import org.example.RoleRepo;
+import org.example.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +25,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Transactional
-    public void updateRole(int id, Role tempRole) {
+    public RoleDTO updateRole(int id, Role tempRole) {
         Role r = roleRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("role with id " + id + " does not exist"));
         if(tempRole == null) {
             throw new IllegalArgumentException("null input");
@@ -32,11 +36,11 @@ public class RoleServiceImpl implements RoleService {
         if(tempRole.getDescription() != null && !tempRole.getDescription().isEmpty()) {
             r.setDescription(tempRole.getDescription());
         }
-        System.out.println(tempRole);
+        return new RoleDTO(r);
     }
 
     @Transactional
-    public void addRole(Role role) {
+    public RoleDTO addRole(Role role) {
         if(role.getTitle() == null || role.getTitle().isEmpty()) {
             throw new IllegalArgumentException("cannot add role without title");
         }
@@ -44,6 +48,7 @@ public class RoleServiceImpl implements RoleService {
             throw new IllegalArgumentException("cannot add role without description");
         }
         roleRepo.save(role);
+        return new RoleDTO(role);
     }
 
     public void deleteRole(int id) {

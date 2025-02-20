@@ -1,6 +1,7 @@
-package org.example;
+package org.example.impl;
 
 import jakarta.transaction.Transactional;
+import org.example.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Transactional
-    public void updateEmployee(int id, Employee tempEmployee) {
+    public EmployeeDTO updateEmployee(int id, Employee tempEmployee) {
         Employee e = employeeRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("employee with id " + id + " does not exist"));
         if(tempEmployee == null) {
             throw new IllegalArgumentException("null input");
@@ -45,10 +46,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         if(tempEmployee.getEmploymentStatus() != null && !tempEmployee.getEmploymentStatus().isEmpty()) {
             e.setEmploymentStatus(tempEmployee.getEmploymentStatus());
         }
+        return new EmployeeDTO(e);
     }
 
     @Transactional
-    public void addEmployee(Employee employee) {
+    public EmployeeDTO addEmployee(Employee employee) {
         if(employee.getName() == null || employee.getName().isEmpty()) {
             throw new IllegalArgumentException("cannot add employee without name");
         }
@@ -62,6 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new IllegalArgumentException("cannot add employee without contact no");
         }
         employeeRepo.save(employee);
+        return new EmployeeDTO(employee);
     }
 
     public void deleteEmployee(int id) {
@@ -72,7 +75,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Transactional
-    public void addRole(int employeeId, int roleId) {
+    public EmployeeDTO addRole(int employeeId, int roleId) {
         Employee e = employeeRepo.findById(employeeId).orElseThrow(() -> new IllegalArgumentException("employee with id " + employeeId + " does not exist"));
         Role r = roleRepo.findById(roleId).orElseThrow(() -> new IllegalArgumentException("role with id " + roleId + " does not exist"));
         for(Role role: e.getRoles()) {
@@ -81,22 +84,23 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
         }
         e.getRoles().add(r);
+        return new EmployeeDTO(e);
     }
 
     @Transactional
-    public void deleteRole(int employeeId, int roleId) {
+    public EmployeeDTO deleteRole(int employeeId, int roleId) {
         Employee e = employeeRepo.findById(employeeId).orElseThrow(() -> new IllegalArgumentException("employee with id " + employeeId + " does not exist"));
         Role r = roleRepo.findById(roleId).orElseThrow(() -> new IllegalArgumentException("role with id " + roleId + " does not exist"));
         for(int i = 0; i < e.getRoles().size(); i++) {
             if(e.getRoles().get(i).getId() == roleId) {
                 e.getRoles().remove(i);
-                return;
+                return new EmployeeDTO(e);
             }
         }
         throw new IllegalArgumentException("employee with id " + employeeId + " does not have that role");
     }
     @Transactional
-    public void addTicket(int employeeId, int ticketId) {
+    public EmployeeDTO addTicket(int employeeId, int ticketId) {
         Employee e = employeeRepo.findById(employeeId).orElseThrow(() -> new IllegalArgumentException("employee with id " + employeeId + " does not exist"));
         Ticket t = ticketRepo.findById(ticketId).orElseThrow(() -> new IllegalArgumentException("ticket with id " + ticketId + " does not exist"));
         for(Ticket ticket: e.getTickets()) {
@@ -105,16 +109,17 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
         }
         t.getAssignees().add(e);
+        return new EmployeeDTO(e);
     }
 
     @Transactional
-    public void deleteTicket(int employeeId, int ticketId) {
+    public EmployeeDTO deleteTicket(int employeeId, int ticketId) {
         Employee e = employeeRepo.findById(employeeId).orElseThrow(() -> new IllegalArgumentException("employee with id " + employeeId + " does not exist"));
         Ticket t = ticketRepo.findById(ticketId).orElseThrow(() -> new IllegalArgumentException("ticket with id " + ticketId + " does not exist"));
         for(int i = 0; i < e.getRoles().size(); i++) {
             if(t.getAssignees().get(i).getId() == employeeId) {
                 t.getAssignees().remove(i);
-                return;
+                return new EmployeeDTO(e);
             }
         }
         throw new IllegalArgumentException("employee with id " + employeeId + " does not have that ticket");

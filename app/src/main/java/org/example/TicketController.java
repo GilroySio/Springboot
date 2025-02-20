@@ -8,41 +8,41 @@ import java.util.List;
 @RestController
 public class TicketController {
     @Autowired
-    TicketServiceImpl ticketServiceImpl;
+    TicketService ticketService;
 
     @GetMapping("/tickets")
     public List<TicketDTO> getTickets() {
-        return ticketServiceImpl.getTickets();
+        return ticketService.getTickets();
     }
 
     @GetMapping("/tickets/{id}")
     public TicketDTO getTicketById(@PathVariable("id") int id) {
-        return ticketServiceImpl.getTicketById(id);
+        return ticketService.getTicketById(id);
     }
 
     @PutMapping("/tickets/{id}")
     public void editTicket(@PathVariable("id") int id, @RequestBody Ticket ticket) {
-        ticketServiceImpl.editTicket(id, ticket);
+        ticketService.editTicket(id, ticket);
     }
 
     @PostMapping("add-ticket")
     public void addTicket(@RequestBody Ticket ticket) {
-        ticketServiceImpl.addTicket(ticket);
+        ticketService.addTicket(ticket);
     }
 
     @DeleteMapping("delete-ticket/{id}")
     public void deleteTicket(@PathVariable("id") int id) {
-        ticketServiceImpl.deleteTicket(id);
+        ticketService.deleteTicket(id);
     }
 
     @PutMapping("resolve/{id}")
-    public void resolveTicket(@PathVariable("id") int id) {
-        ticketServiceImpl.resolveTicket(id);
+    public void resolveTicket(@PathVariable("id") int id, @RequestParam(name = "resolve") String resolve) {
+        ticketService.resolveTicket(id, resolve);
     }
 
     @PutMapping("remarks/{id}")
     public void addRemarks(@PathVariable("id") int id, @RequestBody Ticket ticket) {
-        ticketServiceImpl.addRemarks(id, ticket);
+        ticketService.addRemarks(id, ticket);
     }
 
 }
