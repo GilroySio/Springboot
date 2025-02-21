@@ -5,25 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="978e28e3-0229-465d-871a-a6d7b26b79a7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/model/src/main/java/org/example/TicketDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/repo/src/main/java/org/example/TicketRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/main/java/org/example/TicketController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/src/main/java/org/example/TicketService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/org/example/LoggingAspect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/org/example/AppTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/org/example/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/org/example/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/org/example/EmployeeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/org/example/EmployeeDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/org/example/RoleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/org/example/RoleDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/org/example/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/org/example/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/test/java/org/example/AppTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repo/src/test/java/org/example/AppTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/org/example/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/org/example/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/org/example/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/org/example/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/org/example/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/org/example/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/org/example/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/org/example/RoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/test/java/org/example/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repo/src/main/java/org/example/EmployeeConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/repo/src/main/java/org/example/EmployeeConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repo/src/main/java/org/example/RoleConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/repo/src/main/java/org/example/RoleConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
