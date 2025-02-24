@@ -21,13 +21,13 @@ public class TicketController {
     }
 
     @PutMapping("/tickets/{id}")
-    public void editTicket(@PathVariable("id") int id, @RequestBody Ticket ticket) {
-        ticketService.editTicket(id, ticket);
+    public TicketDTO editTicket(@PathVariable("id") int id, @RequestBody Ticket ticket) {
+        return ticketService.editTicket(id, ticket);
     }
 
     @PostMapping("add-ticket")
-    public void addTicket(@RequestBody Ticket ticket) {
-        ticketService.addTicket(ticket);
+    public TicketDTO addTicket(@RequestBody Ticket ticket) {
+        return ticketService.addTicket(ticket);
     }
 
     @DeleteMapping("delete-ticket/{id}")
@@ -36,13 +36,13 @@ public class TicketController {
     }
 
     @PutMapping("resolve/{id}")
-    public void resolveTicket(@PathVariable("id") int id, @RequestParam(name = "resolve") String resolve) {
-        ticketService.resolveTicket(id, resolve);
+    public TicketDTO resolveTicket(@PathVariable("id") int id, @RequestParam(name = "status") String status) {
+        return ticketService.resolveTicket(id, status);
     }
 
     @PutMapping("remarks/{id}")
-    public void addRemarks(@PathVariable("id") int id, @RequestBody Ticket ticket) {
-        ticketService.addRemarks(id, ticket);
+    public TicketDTO addRemarks(@PathVariable("id") int id, @RequestBody Ticket ticket) {
+        return ticketService.addRemarks(id, ticket);
     }
 
 }

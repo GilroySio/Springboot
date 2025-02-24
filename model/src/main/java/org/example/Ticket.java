@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,7 +23,7 @@ public class Ticket {
     private String body;
     @ManyToMany
     @JoinTable(name = "ticket_employee", joinColumns = @JoinColumn(name = "ticket_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
-    private List<Employee> assignees;
+    private List<Employee> assignees = new ArrayList<>();
     private String status;
     private LocalDate createdDate;
     @ManyToOne

@@ -32,7 +32,7 @@ public class TicketServiceImpl implements TicketService {
         if(ticket.getBody() == null || ticket.getBody().isEmpty()) {
             throw new IllegalArgumentException("cannot add ticket without body");
         }
-        ticket.setStatus("unresolved");
+        ticket.setStatus("draft");
         ticket.setCreatedBy(employeeRepo.findById(2).orElseThrow(() -> new IllegalArgumentException("default employee with id 2 for ticket creation does not exist")));
         ticket.setCreatedDate(LocalDate.now());
         ticketRepo.save(ticket);
@@ -63,6 +63,9 @@ public class TicketServiceImpl implements TicketService {
     @Transactional
     public TicketDTO resolveTicket(int id, String s) {
         Ticket ticket = ticketRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ticket with id " + id + " does not exist"));
+        if(s == null || s.isEmpty()) {
+            throw new IllegalArgumentException("status cannot be blank");
+        }
         ticket.setStatus(s);
         ticket.setUpdatedBy(employeeRepo.findById(2).orElseThrow(() -> new IllegalArgumentException("default employee with id 2 for ticket update does not exist")));
         ticket.setUpdatedDate(LocalDate.now());
