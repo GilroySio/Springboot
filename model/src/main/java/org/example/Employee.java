@@ -25,9 +25,10 @@ public class Employee {
     private String employmentStatus;
     @ManyToMany
     @JoinTable(name = "employee_role", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles = new ArrayList<Role>();
+    private List<Role> roles = new ArrayList<>();
     @ManyToMany(mappedBy = "assignees")
-    private List<Ticket> tickets = new ArrayList<Ticket>();
+    private List<Ticket> tickets = new ArrayList<>();
+    private String password;
 
     public Employee(String name, int age, String address, String contactNo, String employmentStatus) {
         this.name = name;

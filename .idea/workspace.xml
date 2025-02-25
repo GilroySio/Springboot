@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="978e28e3-0229-465d-871a-a6d7b26b79a7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/model/src/main/java/org/example/EmployeeDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/org/example/EmployeeDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/org/example/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/example/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/example/TicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/src/main/java/org/example/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/org/example/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/org/example/impl/TicketServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/org/example/impl/TicketServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/org/example/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/org/example/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repo/src/main/java/org/example/EmployeeConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/repo/src/main/java/org/example/EmployeeConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repo/src/main/java/org/example/EmployeeRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/repo/src/main/java/org/example/EmployeeRepo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
